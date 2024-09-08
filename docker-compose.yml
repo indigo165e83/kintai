@@ -1,0 +1,18 @@
+version: '3.1'
+
+services:
+  mariadb:
+    image: mariadb:10.5
+    container_name: mariadb-container
+    environment:
+      MARIADB_ROOT_PASSWORD: password  # Rootパスワードを設定
+      MARIADB_DATABASE: kintaidb             # デフォルトのデータベースを作成
+      MARIADB_USER: user               # 新しいユーザーを作成
+      MARIADB_PASSWORD: password         # 新しいユーザーのパスワード
+    ports:
+      - "3306:3306"
+    volumes:
+      - kintai-mariadb-data:/var/lib/mysql  # データの永続化
+
+volumes:
+  kintai-mariadb-data:
